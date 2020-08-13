@@ -314,10 +314,16 @@ export default {
   },
   methods: {
     add() {
-      axios.post("http://localhost:8080/api/v1/siswa/", this.model).then(() => {
-        alert("success add data");
-        this.$router.go();
-      });
+      axios
+        .post("http://localhost:8080/api/v1/siswa/", this.model)
+        .then(() => {
+          alert("success add data");
+          this.$router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Failed Add Data");
+        });
     },
   },
 };

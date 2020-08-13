@@ -122,7 +122,11 @@ export default {
     add() {
       axios
         .post("http://localhost:8080/api/v1/registrasi", this.model)
-        .then(() => alert("success add data"));
+        .then(() => alert("success add data"))
+        .catch((err) => {
+          console.log(err);
+          alert("Failed Add Data");
+        });
     },
   },
 };

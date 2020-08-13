@@ -107,6 +107,10 @@ export default {
         .then(() => {
           alert("success add data");
           this.$router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Failed Add Data");
         });
     },
   },

@@ -95,7 +95,7 @@ import DataKeluar from "./Tables/DataKeluar";
 import axios from "axios";
 
 export default {
-  name: "tables",
+  name: "data-siswa",
   components: {
     ProjectsTable,
     DataKontak,

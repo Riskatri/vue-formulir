@@ -62,9 +62,9 @@ export default new Router({
         },
         {
           path: "/dataSiswa",
-          name: "tables",
+          name: "data-siswa",
           component: () =>
-            import(/* webpackChunkName: "demo" */ "./views/Tables.vue"),
+            import(/* webpackChunkName: "demo" */ "./views/DataSiswa.vue"),
         },
       ],
     },

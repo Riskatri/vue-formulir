@@ -136,6 +136,10 @@ export default {
         )
         .then(() => {
           alert("edit success");
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Failed Edit Data");
         });
     },
   },

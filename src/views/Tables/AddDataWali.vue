@@ -96,10 +96,8 @@ export default {
       model: {
         ID_WALI: "",
         ID_SISWA: "",
-
         ID_PEKERJAAN: "",
         ID_PENDIDIKAN: "",
-
         NAMA_WALI: "",
         NIK_WALI: "",
         TAHUN_LAHIR: "",
@@ -131,6 +129,10 @@ export default {
         .then(() => {
           alert("success add data");
           this.$router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Failed Add Data");
         });
     },
   },

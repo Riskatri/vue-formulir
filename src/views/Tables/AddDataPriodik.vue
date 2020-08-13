@@ -49,7 +49,6 @@
                 <label>JARAK TEMPUH KE SEKOLAH</label>
                 <!-- <p>JENIS KELAMIN</p> -->
                 <input type="radio" value="kurang dari 1 km" />
-
                 Kurang dari 1 km
                 <input type="radio" value="lebih dari 1 km" />
                 lebih dari 1 km
@@ -92,7 +91,6 @@ export default {
       model: {
         ID_DATA_PRIODIK: "",
         ID_SISWA: "",
-
         TINGGI_BADAN: "",
         BERAT_BADAN: "",
         JARAK_KE_SEKOLAH: "",
@@ -114,6 +112,10 @@ export default {
         .then(() => {
           alert("success add data");
           this.$router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Failed Add Data");
         });
     },
   },
