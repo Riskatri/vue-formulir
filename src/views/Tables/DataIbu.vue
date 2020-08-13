@@ -78,7 +78,7 @@ export default {
     mdbTblBody,
   },
   name: "data-ibu",
-  mounted: function () {
+  created() {
     axios
       .get("http://localhost:8080/api/v1/data_ibu/semua_data_ibu")
       .then((response) => {

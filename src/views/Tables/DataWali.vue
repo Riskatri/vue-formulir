@@ -24,10 +24,8 @@
             <tr scope="columns">
               <th>ID WALI</th>
               <th>ID SISWA</th>
-
               <th>ID PEKERJAAN</th>
               <th>ID PENDIDIKAN</th>
-
               <th>NAMA</th>
               <th>NIK</th>
               <th>TAHUN LAHIR</th>
@@ -39,10 +37,8 @@
             <tr scope="row" v-for="wali in result" :key="wali.ID_WALI">
               <td>{{ wali.ID_WALI }}</td>
               <td>{{ wali.ID_SISWA }}</td>
-
               <td>{{ wali.ID_PEKERJAAN }}</td>
               <td>{{ wali.ID_PENDIDIKAN }}</td>
-
               <td>{{ wali.NAMA_WALI }}</td>
               <td>{{ wali.NIK_WALI }}</td>
               <td>{{ wali.TAHUN_LAHIR }}</td>
@@ -78,7 +74,7 @@ export default {
     mdbTblBody,
   },
   name: "data-wali",
-  mounted: function () {
+  created() {
     axios
       .get("http://localhost:8080/api/v1/data_wali/semua_data_wali")
       .then((response) => {

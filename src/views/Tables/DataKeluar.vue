@@ -3,9 +3,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">
-            PENDAFTARAN SISWA KELUAR
-          </h3>
+          <h3 class="mb-0">PENDAFTARAN SISWA KELUAR</h3>
         </div>
         <div class="col text-right">
           <!-- <base-button type="primary" size="sm">See all</base-button> -->
@@ -34,11 +32,7 @@
           </mdb-tbl-head>
 
           <mdb-tbl-body>
-            <tr
-              scope="row"
-              v-for="keluar in result"
-              :key="keluar.DAFTAR_KELUAR_ID"
-            >
+            <tr scope="row" v-for="keluar in result" :key="keluar.DAFTAR_KELUAR_ID">
               <td>{{ keluar.DAFTAR_KELUAR_ID }}</td>
               <td>{{ keluar.ID_SISWA }}</td>
 
@@ -52,14 +46,11 @@
                   :to="`/edit_keluar/${keluar.DAFTAR_KELUAR_ID}`"
                   tag="button"
                   class="btn btn-warning"
-                  >Edit</router-link
-                >
+                >Edit</router-link>
                 <button
                   class="btn btn-danger"
                   v-on:click="deleteData(keluar.DAFTAR_KELUAR_ID)"
-                >
-                  Delete
-                </button>
+                >Delete</button>
               </td>
             </tr>
           </mdb-tbl-body>
@@ -74,7 +65,7 @@ import axios from "axios";
 import { mdbTbl, mdbTblHead, mdbTblBody } from "mdbvue";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       result: [],
     };
@@ -85,7 +76,7 @@ export default {
     mdbTblBody,
   },
   name: "data-keluar",
-  mounted: function() {
+  created() {
     axios
       .get("http://localhost:8080/api/v1/daftar_keluar/semua_daftar_siswa")
       .then((response) => {

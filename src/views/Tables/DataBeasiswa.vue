@@ -3,9 +3,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">
-            DATA BEASISWA
-          </h3>
+          <h3 class="mb-0">DATA BEASISWA</h3>
         </div>
         <div class="col text-right">
           <!-- <base-button type="primary" size="sm">See all</base-button> -->
@@ -37,11 +35,7 @@
           </mdb-tbl-head>
 
           <mdb-tbl-body>
-            <tr
-              scope="row"
-              v-for="beasiswa in result"
-              :key="beasiswa.BEASISWA_ID"
-            >
+            <tr scope="row" v-for="beasiswa in result" :key="beasiswa.BEASISWA_ID">
               <td>{{ beasiswa.BEASISWA_ID }}</td>
               <td>{{ beasiswa.ID_SISWA }}</td>
               <td>{{ beasiswa.ID_JENIS_BEASISWA }}</td>
@@ -56,14 +50,8 @@
                   :to="`/edit_beasiswa/${beasiswa.BEASISWA_ID}`"
                   tag="button"
                   class="btn btn-warning"
-                  >Edit</router-link
-                >
-                <button
-                  class="btn btn-danger"
-                  v-on:click="deleteData(beasiswa.BEASISWA_ID)"
-                >
-                  Delete
-                </button>
+                >Edit</router-link>
+                <button class="btn btn-danger" v-on:click="deleteData(beasiswa.BEASISWA_ID)">Delete</button>
               </td>
             </tr>
           </mdb-tbl-body>
@@ -78,7 +66,7 @@ import axios from "axios";
 import { mdbTbl, mdbTblHead, mdbTblBody } from "mdbvue";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       result: [],
     };
@@ -89,7 +77,7 @@ export default {
     mdbTblBody,
   },
   name: "data-beasiswa",
-  mounted: function() {
+  created() {
     axios
       .get("http://localhost:8080/api/v1/beasiswa/semua_beasiswa_siswa")
       .then((response) => {

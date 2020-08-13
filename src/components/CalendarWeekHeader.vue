@@ -1,8 +1,6 @@
 <template>
   <th>
-    <div class="single-date-picker__calendar-week-header">
-      {{ day }}
-    </div>
+    <div class="single-date-picker__calendar-week-header">{{ day }}</div>
   </th>
 </template>
 
@@ -20,6 +18,5 @@ export default {
 <style scoped>
 .single-date-picker__calendar-week-header {
   margin-top: 20px;
-  color: #77505e;
 }
 </style>

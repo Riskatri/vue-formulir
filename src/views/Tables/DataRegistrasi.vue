@@ -83,7 +83,7 @@ export default {
     mdbTblBody,
   },
   name: "data-registrasi",
-  mounted: function () {
+  created() {
     axios
       .get("http://localhost:8080/api/v1/registrasi/semua_registrasi")
       .then((response) => {
