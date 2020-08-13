@@ -14,22 +14,19 @@
               placeholder="ID DATA PRIODIK"
               addon-left-icon="ni ni-circle-08"
               v-model="model.ID_DATA_PRIODIK"
-            >
-            </base-input>
+            ></base-input>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> SISWA </label>
+                <label>SISWA</label>
                 <select v-model="model.ID_SISWA">
-                  <option selected disabled> pilih siswa </option>
+                  <option selected disabled>pilih siswa</option>
                   <option
                     v-for="sis in siswa"
                     :key="sis.ID_SISWA"
                     :value="sis.ID_SISWA"
-                  >
-                    {{ sis.NAMA_LENGKAP }}
-                  </option></select
-                >
+                  >{{ sis.NAMA_LENGKAP }}</option>
+                </select>
               </div>
             </div>
 
@@ -39,23 +36,20 @@
               placeholder="TINGGI BADAN (cm)"
               addon-left-icon="ni ni-ruler-pencil"
               v-model="model.TINGGI_BADAN"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="BERAT BADAN (kg)"
               addon-left-icon="ni ni-ruler-pencil"
               v-model="model.BERAT_BADAN"
-            >
-            </base-input>
+            ></base-input>
             <div class="row">
               <div class="col-lg-6">
-                <label> JARAK TEMPUH KE SEKOLAH</label>
+                <label>JARAK TEMPUH KE SEKOLAH</label>
                 <!-- <p>JENIS KELAMIN</p> -->
                 <input type="radio" value="kurang dari 1 km" />
                 Kurang dari 1 km
-
                 <input type="radio" value="lebih dari 1 km" />
                 lebih dari 1 km
               </div>
@@ -66,23 +60,20 @@
               placeholder="SEBUTKAN dalam (km)"
               addon-left-icon="ni ni-bus-front-12"
               v-model="model.JARAK_KE_SEKOLAH"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="WAKTU TEMPUH KE SEKOLAH (km)"
               addon-left-icon="ni ni-watch-time"
               v-model="model.WAKTU_TEMPUH_KE_SEKOLAH"
-            >
-            </base-input>
+            ></base-input>
             <base-input
               class="input-group-alternative mb-3"
               placeholder="JUMLAH SAUDARA KANDUNG"
               addon-left-icon="ni ni-circle-08"
               v-model="model.JUMLAH_SAUDARA_KANDUNG"
-            >
-            </base-input>
+            ></base-input>
 
             <button type="submit" class="btn btn-primary">EDIT</button>
           </form>
@@ -100,7 +91,6 @@ export default {
       model: {
         ID_DATA_PRIODIK: "",
         ID_SISWA: "",
-
         TINGGI_BADAN: "",
         BERAT_BADAN: "",
         JARAK_KE_SEKOLAH: "",
@@ -119,17 +109,17 @@ export default {
   },
 
   methods: {
-    getData(ID_DATA_PRIODIK) {
+    getData() {
       axios
         .get(
-          `http://localhost:8080/api/v1/data_priodik?ID_DATA_PRIODIK=${ID_DATA_PRIODIK}`
+          `http://localhost:8080/api/v1/data_priodik?ID_DATA_PRIODIK=${this.$route.params.id}`
         )
         .then((response) => (this.result = response.data.result[0]));
     },
-    editData(ID_DATA_PRIODIK) {
+    editData() {
       axios
         .put(
-          `http://localhost:8080/api/v1/data_priodik?ID_DATA_PRIODIK=${ID_DATA_PRIODIK}`,
+          `http://localhost:8080/api/v1/data_priodik?ID_DATA_PRIODIK=${this.$route.params.id}`,
           this.model
         )
         .then(() => {

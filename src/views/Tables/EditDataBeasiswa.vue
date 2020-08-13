@@ -14,37 +14,32 @@
               placeholder="ID BEASISWA"
               addon-left-icon="ni ni-hat-3"
               v-model="model.BEASISWA_ID"
-            >
-            </base-input>
+            ></base-input>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> SISWA </label>
+                <label>SISWA</label>
                 <select v-model="model.ID_SISWA">
-                  <option selected disabled> pilih siswa </option>
+                  <option selected disabled>pilih siswa</option>
                   <option
                     v-for="sis in siswa"
                     :key="sis.ID_SISWA"
                     :value="sis.ID_SISWA"
-                  >
-                    {{ sis.NAMA_LENGKAP }}
-                  </option></select
-                >
+                  >{{ sis.NAMA_LENGKAP }}</option>
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
                 <label>JENIS BEASISWA</label>
                 <select v-model="model.ID_JENIS_BEASISWA">
-                  <option selected disabled> pilih jenis beasiswa</option>
+                  <option selected disabled>pilih jenis beasiswa</option>
                   <option
                     v-for="bea in beasiswa"
                     :key="bea.ID_JENIS_BEASISWA"
                     :value="bea.ID_JENIS_BEASISWA"
-                  >
-                    {{ bea.JENIS_BEASISWA }}
-                  </option></select
-                >
+                  >{{ bea.JENIS_BEASISWA }}</option>
+                </select>
               </div>
             </div>
 
@@ -54,24 +49,21 @@
               placeholder="KETERANGAN"
               addon-left-icon="ni ni-trophy"
               v-model="model.KETERANGAN"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="TAHUN MULAI"
               addon-left-icon="ni ni-calendar-grid-58"
               v-model="model.TAHUN_MULAI"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="TAHUN SELAI"
               addon-left-icon="ni ni-calendar-grid-58"
               v-model="model.TAHUN_SELESAI"
-            >
-            </base-input>
+            ></base-input>
             <button type="submit" class="btn btn-primary">EDIT</button>
           </form>
         </div>
@@ -111,15 +103,17 @@ export default {
   },
 
   methods: {
-    getData(BEASISWA_ID) {
+    getData() {
       axios
-        .get(`http://localhost:8080/api/v1/beasiswa?BEASISWA_ID=${BEASISWA_ID}`)
+        .get(
+          `http://localhost:8080/api/v1/beasiswa?BEASISWA_ID=${this.$route.params.id}`
+        )
         .then((response) => (this.result = response.data.result[0]));
     },
-    editData(BEASISWA_ID) {
+    editData() {
       axios
         .put(
-          `http://localhost:8080/api/v1/beasiswa?BEASISWA_ID=${BEASISWA_ID}`,
+          `http://localhost:8080/api/v1/beasiswa?BEASISWA_ID=${this.$route.params.id}`,
           this.model
         )
         .then(() => {

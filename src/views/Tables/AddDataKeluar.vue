@@ -14,37 +14,32 @@
               placeholder="ID PENDAFTARAN SISWA KELUAR"
               addon-left-icon="ni ni-circle-08"
               v-model="model.DAFTAR_KELUAR_ID"
-            >
-            </base-input>
+            ></base-input>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> SISWA </label>
+                <label>SISWA</label>
                 <select v-model="model.ID_SISWA">
-                  <option selected disabled> pilih siswa </option>
+                  <option selected disabled>pilih siswa</option>
                   <option
                     v-for="sis in siswa"
                     :key="sis.ID_SISWA"
                     :value="sis.ID_SISWA"
-                  >
-                    {{ sis.NAMA_LENGKAP }}
-                  </option></select
-                >
+                  >{{ sis.NAMA_LENGKAP }}</option>
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <label> KELUAR KARENA</label>
+                <label>KELUAR KARENA</label>
                 <select v-model="model.ID_ALASAN">
-                  <option selected disabled> pilih alasan keluar</option>
+                  <option selected disabled>pilih alasan keluar</option>
                   <option
                     v-for="alasan in keluar"
                     :key="alasan.ID_ALASAN"
                     :value="alasan.ID_ALASAN"
-                  >
-                    {{ alasan.KELUAR_KARNA }}
-                  </option></select
-                >
+                  >{{ alasan.KELUAR_KARNA }}</option>
+                </select>
               </div>
             </div>
 
@@ -55,16 +50,14 @@
               placeholder="TANGGAL KELUAR"
               addon-left-icon="ni ni-calendar-grid-58"
               v-model="model.TANGGAL_KELUAR"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="ALASAN"
               addon-left-icon="ni ni-folder-17"
               v-model="model.ALASAN"
-            >
-            </base-input>
+            ></base-input>
 
             <button type="submit">add</button>
           </form>
@@ -104,7 +97,10 @@ export default {
     add() {
       axios
         .post("http://localhost:8080/api/v1/daftar_keluar", this.model)
-        .then(() => alert("success add data"));
+        .then(() => {
+          alert("success add data");
+          this.$router.go();
+        });
     },
   },
 };

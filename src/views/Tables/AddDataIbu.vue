@@ -14,87 +14,76 @@
               placeholder="ID IBU"
               addon-left-icon="ni ni-circle-08"
               v-model="model.ID_IBU"
-            >
-            </base-input>
+            ></base-input>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> SISWA </label>
+                <label>SISWA</label>
                 <select v-model="model.ID_SISWA">
-                  <option selected disabled> pilih siswa </option>
+                  <option selected disabled>pilih siswa</option>
                   <option
                     v-for="sis in siswa"
                     :key="sis.ID_SISWA"
                     :value="sis.ID_SISWA"
-                  >
-                    {{ sis.NAMA_LENGKAP }}
-                  </option></select
-                >
+                  >{{ sis.NAMA_LENGKAP }}</option>
+                </select>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> KEBUTUHAN KHUSUS </label>
+                <label>KEBUTUHAN KHUSUS</label>
                 <select v-model="model.ID_KH">
-                  <option selected disabled> pilih kebutuhan</option>
+                  <option selected disabled>pilih kebutuhan</option>
                   <option
                     v-for="kh in kebutuhan"
                     :key="kh.ID_KH"
                     :value="kh.ID_KH"
-                  >
-                    {{ kh.JENIS_KH }}
-                  </option></select
-                >
+                  >{{ kh.JENIS_KH }}</option>
+                </select>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> PEKERJAAN</label>
+                <label>PEKERJAAN</label>
                 <select v-model="model.ID_PEKERJAAN">
-                  <option selected disabled> pilih pekerjaan </option>
+                  <option selected disabled>pilih pekerjaan</option>
                   <option
                     v-for="pek in pekerjaan"
                     :key="pek.ID_PEKERJAAN"
                     :value="pek.ID_PEKERJAAN"
-                  >
-                    {{ pek.JENIS_PEKERJAAN }}
-                  </option></select
-                >
+                  >{{ pek.JENIS_PEKERJAAN }}</option>
+                </select>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> PENDIDIKAN </label>
+                <label>PENDIDIKAN</label>
                 <br />
                 <select v-model="model.ID_PENDIDIKAN">
-                  <option selected disabled> pilih pendidikan </option>
+                  <option selected disabled>pilih pendidikan</option>
                   <option
                     v-for="pen in pendidikan"
                     :key="pen.ID_PENDIDIKAN"
                     :value="pen.ID_PENDIDIKAN"
-                  >
-                    {{ pen.JENJANG_PENDIDIKAN }}
-                  </option></select
-                >
+                  >{{ pen.JENJANG_PENDIDIKAN }}</option>
+                </select>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> PENGHASILAN </label>
+                <label>PENGHASILAN</label>
                 <select v-model="model.ID_PENGHASILAN">
-                  <option selected disabled> pilih penghasilan </option>
+                  <option selected disabled>pilih penghasilan</option>
                   <option
                     v-for="gaji in penghasilan"
                     :key="gaji.ID_PENGHASILAN"
                     :value="gaji.ID_PENGHASILAN"
-                  >
-                    {{ gaji.PENGHASILAN }}
-                  </option></select
-                >
+                  >{{ gaji.PENGHASILAN }}</option>
+                </select>
               </div>
             </div>
             <br />
@@ -103,24 +92,21 @@
               placeholder="NAMA"
               addon-left-icon="ni ni-single-02"
               v-model="model.NAMA"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NIK"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NIK_IBU"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="TAHUN LAHIR"
               addon-left-icon="ni ni-calendar-grid-58"
               v-model="model.TAHUN_LAHIR"
-            >
-            </base-input>
+            ></base-input>
 
             <button type="submit">add</button>
           </form>
@@ -181,7 +167,10 @@ export default {
     add() {
       axios
         .post("http://localhost:8080/api/v1/data_ibu", this.model)
-        .then(() => alert("success add data"));
+        .then(() => {
+          alert("success add data");
+          this.$router.go();
+        });
     },
   },
 };

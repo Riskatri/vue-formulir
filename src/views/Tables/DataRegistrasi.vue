@@ -3,9 +3,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">
-            REGISTRASI SISWA
-          </h3>
+          <h3 class="mb-0">REGISTRASI SISWA</h3>
         </div>
         <div class="col text-right">
           <!-- <base-button type="primary" size="sm">See all</base-button> -->
@@ -38,15 +36,11 @@
           </mdb-tbl-head>
 
           <mdb-tbl-body>
-            <tr
-              scope="row"
-              v-for="registrasi in result"
-              :key="registrasi.REGISTRASI_ID"
-            >
+            <tr scope="row" v-for="registrasi in result" :key="registrasi.REGISTRASI_ID">
               <td>{{ registrasi.REGISTRASI_ID }}</td>
               <td>{{ registrasi.ID_SISWA }}</td>
               <td>{{ registrasi.ID_PENDAFTARAN }}</td>
-              <td>{{ registrasi.TANGGAL_MASUK }}</td>
+              <td>{{ registrasi.TANGGAL_MASUK | formatDate }}</td>
               <td>{{ registrasi.NIS }}</td>
               <td>{{ registrasi.NOMOR_PESERTA_UJIAN }}</td>
               <td>{{ registrasi.NO_SERI_IJAZAH }}</td>
@@ -57,14 +51,11 @@
                   :to="`/edit_regis/${registrasi.REGISTRASI_ID}`"
                   tag="button"
                   class="btn btn-warning"
-                  >Edit</router-link
-                >
+                >Edit</router-link>
                 <button
                   class="btn btn-danger"
                   v-on:click="deleteData(registrasi.REGISTRASI_ID)"
-                >
-                  Delete
-                </button>
+                >Delete</button>
               </td>
             </tr>
           </mdb-tbl-body>
@@ -77,9 +68,11 @@
 <script>
 import axios from "axios";
 import { mdbTbl, mdbTblHead, mdbTblBody } from "mdbvue";
+import moment from "moment";
+import Vue from "vue";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       result: [],
     };
@@ -90,7 +83,7 @@ export default {
     mdbTblBody,
   },
   name: "data-registrasi",
-  mounted: function() {
+  mounted: function () {
     axios
       .get("http://localhost:8080/api/v1/registrasi/semua_registrasi")
       .then((response) => {
@@ -112,12 +105,10 @@ export default {
         });
     },
   },
-  // methods: {
-  //   editMahasiswa(id) {
-  //     this.$router.push({
-  //       path: `/edit/${id}`,
-  //     });
-  //   },
-  // },
 };
+Vue.filter("formatDate", function (value) {
+  if (value) {
+    return moment(String(value)).format("MM/DD/YYYY");
+  }
+});
 </script>

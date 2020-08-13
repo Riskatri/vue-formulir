@@ -5,17 +5,15 @@
       <div class="row">
         <div class="col-xl-3 col-lg-6">
           <stats-card
-            title="Total traffic"
+            title="Total"
             type="gradient-red"
-            sub-title="350,897"
+            sub-title="Students"
             icon="ni ni-active-40"
             class="mb-4 mb-xl-0"
           >
             <template slot="footer">
-              <span class="text-success mr-2"
-                ><i class="fa fa-arrow-up"></i> 3.48%</span
-              >
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">{{ result.length }}</span>
+              <span class="text-nowrap">Student Since Today</span>
             </template>
           </stats-card>
         </div>
@@ -23,53 +21,52 @@
           <stats-card
             title="Total traffic"
             type="gradient-orange"
-            sub-title="2,356"
+            sub-title="PRIODIK"
             icon="ni ni-chart-pie-35"
             class="mb-4 mb-xl-0"
           >
             <template slot="footer">
-              <span class="text-success mr-2"
-                ><i class="fa fa-arrow-up"></i> 12.18%</span
-              >
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">
+                <i class="fa fa-arrow-up"></i>
+                <i>{{ priodik.length }}</i>
+              </span>
+              <span class="text-nowrap">Students Since Today</span>
             </template>
           </stats-card>
         </div>
         <div class="col-xl-3 col-lg-6">
           <stats-card
-            title="Sales"
+            title="Total"
             type="gradient-green"
-            sub-title="924"
-            icon="ni ni-money-coins"
+            sub-title="Registration"
+            icon="ni ni-folder-17"
             class="mb-4 mb-xl-0"
           >
             <template slot="footer">
-              <span class="text-danger mr-2"
-                ><i class="fa fa-arrow-down"></i> 5.72%</span
-              >
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-danger mr-2">{{registrasi.length}}</span>
+              <span class="text-nowrap">Students Since Today</span>
             </template>
           </stats-card>
         </div>
         <div class="col-xl-3 col-lg-6">
           <stats-card
-            title="Performance"
+            title="Total"
             type="gradient-info"
-            sub-title="49,65%"
-            icon="ni ni-chart-bar-32"
+            sub-title="Reward"
+            icon="ni ni-trophy"
             class="mb-4 mb-xl-0"
           >
             <template slot="footer">
-              <span class="text-success mr-2"
-                ><i class="fa fa-arrow-up"></i> 54.8%</span
-              >
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">
+                <i class="fa fa-arrow-up"></i>
+                {{prestasi.length}}
+              </span>
+              <span class="text-nowrap">Student Since Today</span>
             </template>
           </stats-card>
         </div>
       </div>
     </base-header>
-
     <!--Charts-->
     <div class="container-fluid mt--7">
       <div class="row">
@@ -82,16 +79,11 @@
             <div slot="header" class="row align-items-center">
               <div class="col">
                 <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                <h5 class="h3 mb-0">Total orders</h5>
+                <h5 class="h3 mb-0">Total students --> {{result.length}}</h5>
               </div>
             </div>
 
-            <bar-chart
-              :height="350"
-              ref="barChart"
-              :chart-data="redBarChart.chartData"
-            >
-            </bar-chart>
+            <bar-chart :height="350" ref="barChart" :chart-data="redBarChart.chartData"></bar-chart>
           </card>
         </div>
       </div>
@@ -117,6 +109,7 @@ import PageVisitsTable from "../views/Dashboard/PageVisitsTable";
 // Tables
 import SocialTrafficTable from "./Dashboard/SocialTrafficTable";
 import CalendarView from "../components/CalendarView";
+import axios from "axios";
 
 export default {
   components: {
@@ -149,6 +142,10 @@ export default {
           ],
         },
       },
+      result: [],
+      priodik: [],
+      registrasi: [],
+      prestasi: [],
     };
   },
   methods: {
@@ -168,6 +165,44 @@ export default {
   },
   mounted() {
     this.initBigChart(0);
+  },
+  created() {
+    axios
+      .get("http://localhost:8080/api/v1/siswa/semua_siswa")
+      .then((response) => {
+        this.result = response.data.result;
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("http://localhost:8080/api/v1/data_priodik/semua_data_priodik")
+      .then((response) => {
+        this.priodik = response.data.result;
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("http://localhost:8080/api/v1/registrasi/semua_registrasi")
+      .then((response) => {
+        this.registrasi = response.data.result;
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("http://localhost:8080/api/v1/prestasi_siswa/semua_prestasi_siswa")
+      .then((response) => {
+        this.prestasi = response.data.result;
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>

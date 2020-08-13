@@ -43,8 +43,8 @@ export default new Router({
             import(/* webpackChunkName: "demo" */ "./views/Dashboard.vue"),
         },
         {
-          path: "/icons",
-          name: "icons",
+          path: "/dataOrtu",
+          name: "data-ortu",
           component: () =>
             import(/* webpackChunkName: "demo" */ "./views/DataOrtu.vue"),
         },
@@ -61,7 +61,7 @@ export default new Router({
             import(/* webpackChunkName: "demo" */ "./views/Maps.vue"),
         },
         {
-          path: "/tables",
+          path: "/dataSiswa",
           name: "tables",
           component: () =>
             import(/* webpackChunkName: "demo" */ "./views/Tables.vue"),

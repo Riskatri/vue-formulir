@@ -1,0 +1,44 @@
+.search {
+    .input-group {
+        border-radius: $search-border-radius;
+        border: $search-border-width solid;
+        background-color: transparent;
+
+        .input-group-text {
+            background-color: transparent;
+            padding-left: 1rem;
+        }
+    }
+
+    .form-control {
+        width: $search-width;
+        background-color: transparent;
+        padding-left: 300px;
+    }
+
+    padding-left: 150px;
+}
+
+.search-dark {
+    .input-group {
+        border-color: $search-dark-border-color;
+    }
+
+    .input-group-text {
+        color: $search-dark-color;
+    }
+
+    .form-control {
+        color: $search-dark-focus-color;
+
+        &::placeholder {
+            color: $search-dark-color;
+        }
+    }
+
+    .focused {
+        .input-group {
+            border-color: $search-dark-focus-border-color;
+        }
+    }
+}

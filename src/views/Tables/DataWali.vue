@@ -3,9 +3,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">
-            DATA WALI
-          </h3>
+          <h3 class="mb-0">DATA WALI</h3>
         </div>
         <div class="col text-right">
           <!-- <base-button type="primary" size="sm">See all</base-button> -->
@@ -53,14 +51,8 @@
                   :to="`/edit_wali/${wali.ID_WALI}`"
                   tag="button"
                   class="btn btn-warning"
-                  >Edit</router-link
-                >
-                <button
-                  class="btn btn-danger"
-                  v-on:click="deleteData(wali.ID_WALI)"
-                >
-                  Delete
-                </button>
+                >Edit</router-link>
+                <button class="btn btn-danger" v-on:click="deleteData(wali.ID_WALI)">Delete</button>
               </td>
             </tr>
           </mdb-tbl-body>
@@ -75,7 +67,7 @@ import axios from "axios";
 import { mdbTbl, mdbTblHead, mdbTblBody } from "mdbvue";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       result: [],
     };
@@ -85,8 +77,8 @@ export default {
     mdbTblHead,
     mdbTblBody,
   },
-  name: "data-ayah",
-  mounted: function() {
+  name: "data-wali",
+  mounted: function () {
     axios
       .get("http://localhost:8080/api/v1/data_wali/semua_data_wali")
       .then((response) => {

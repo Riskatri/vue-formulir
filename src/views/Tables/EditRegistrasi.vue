@@ -14,78 +14,72 @@
               placeholder="REGISTRASI ID"
               addon-left-icon="ni ni-circle-08"
               v-model="model.REGISTRASI_ID"
-            >
-            </base-input>
+            ></base-input>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> SISWA </label>
+                <label>SISWA</label>
                 <select v-model="model.ID_SISWA">
-                  <option selected disabled> pilih siswa </option>
+                  <option selected disabled>pilih siswa</option>
                   <option
                     v-for="sis in siswa"
                     :key="sis.ID_SISWA"
                     :value="sis.ID_SISWA"
-                  >
-                    {{ sis.NAMA_LENGKAP }}
-                  </option></select
-                >
+                  >{{ sis.NAMA_LENGKAP }}</option>
+                </select>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> PENDAFTARAN</label>
+                <label>PENDAFTARAN</label>
                 <select v-model="model.ID_PENDAFTARAN">
-                  <option selected disabled> pilih pendaftaran </option>
+                  <option selected disabled>pilih pendaftaran</option>
                   <option
                     v-for="daftar in pendaftaran"
                     :key="daftar.ID_PENDAFTARAN"
                     :value="daftar.ID_PENDAFTARAN"
-                  >
-                    {{ daftar.JENIS }}
-                  </option></select
-                >
+                  >{{ daftar.JENIS }}</option>
+                </select>
               </div>
             </div>
 
-            <base-input
-              class="input-group-alternative mb-3"
-              placeholder="TANGGAL MASUK"
-              addon-left-icon="ni ni-calendar-grid-58"
-              v-model="model.TANGGAL_MASUK"
-            >
-            </base-input>
+            <div class="row">
+              <div class="col-lg-6">
+                TANGGAL MASUK
+                <input
+                  class="input-group-mb-3"
+                  v-model="model.TANGGAL_MASUK"
+                  type="date"
+                />
+              </div>
+            </div>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NIS"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NIS"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NOMOR PESERTA UJIAN"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NOMOR_PESERTA_UJIAN"
-            >
-            </base-input>
+            ></base-input>
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NOMOR SERI IJAZAH"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NO_SERI_IJAZAH"
-            >
-            </base-input>
+            ></base-input>
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NOMOR SERI SKHUS"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NO_SERI_SKHUS"
-            >
-            </base-input>
+            ></base-input>
             <button type="submit" class="btn btn-primary">EDIT</button>
           </form>
         </div>
@@ -127,17 +121,17 @@ export default {
   },
 
   methods: {
-    getData(REGISTRASI_ID) {
+    getData() {
       axios
         .get(
-          `http://localhost:8080/api/v1/registrasi?REGISTRASI_ID=${REGISTRASI_ID}`
+          `http://localhost:8080/api/v1/registrasi?REGISTRASI_ID=${this.$route.params.id}`
         )
         .then((response) => (this.result = response.data.result[0]));
     },
-    editData(REGISTRASI_ID) {
+    editData() {
       axios
         .put(
-          `http://localhost:8080/api/v1/registrasi?REGISTRASI_ID=${REGISTRASI_ID}`,
+          `http://localhost:8080/api/v1/registrasi?REGISTRASI_ID=${this.$route.params.id}`,
           this.model
         )
         .then(() => {

@@ -14,55 +14,48 @@
               placeholder="ID WALI"
               addon-left-icon="ni ni-circle-08"
               v-model="model.ID_WALI"
-            >
-            </base-input>
+            ></base-input>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> SISWA </label>
+                <label>SISWA</label>
                 <select v-model="model.ID_SISWA">
-                  <option selected disabled> pilih siswa </option>
+                  <option selected disabled>pilih siswa</option>
                   <option
                     v-for="sis in siswa"
                     :key="sis.ID_SISWA"
                     :value="sis.ID_SISWA"
-                  >
-                    {{ sis.NAMA_LENGKAP }}
-                  </option></select
-                >
+                  >{{ sis.NAMA_LENGKAP }}</option>
+                </select>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> PEKERJAAN</label>
+                <label>PEKERJAAN</label>
                 <select v-model="model.ID_PEKERJAAN">
-                  <option selected disabled> pilih pekerjaan </option>
+                  <option selected disabled>pilih pekerjaan</option>
                   <option
                     v-for="pek in pekerjaan"
                     :key="pek.ID_PEKERJAAN"
                     :value="pek.ID_PEKERJAAN"
-                  >
-                    {{ pek.JENIS_PEKERJAAN }}
-                  </option></select
-                >
+                  >{{ pek.JENIS_PEKERJAAN }}</option>
+                </select>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> PENDIDIKAN </label>
+                <label>PENDIDIKAN</label>
                 <br />
                 <select v-model="model.ID_PENDIDIKAN">
-                  <option selected disabled> pilih pendidikan </option>
+                  <option selected disabled>pilih pendidikan</option>
                   <option
                     v-for="pen in pendidikan"
                     :key="pen.ID_PENDIDIKAN"
                     :value="pen.ID_PENDIDIKAN"
-                  >
-                    {{ pen.JENJANG_PENDIDIKAN }}
-                  </option></select
-                >
+                  >{{ pen.JENJANG_PENDIDIKAN }}</option>
+                </select>
               </div>
             </div>
 
@@ -71,24 +64,21 @@
               placeholder="NAMA"
               addon-left-icon="ni ni-single-02"
               v-model="model.NAMA_WALI"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NIK"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NIK_WALI"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="TAHUN LAHIR"
               addon-left-icon="ni ni-calendar-grid-58"
               v-model="model.TAHUN_LAHIR"
-            >
-            </base-input>
+            ></base-input>
 
             <button type="submit" class="btn btn-primary">EDIT</button>
           </form>
@@ -106,10 +96,8 @@ export default {
       model: {
         ID_WALI: "",
         ID_SISWA: "",
-
         ID_PEKERJAAN: "",
         ID_PENDIDIKAN: "",
-
         NAMA_WALI: "",
         NIK_WALI: "",
         TAHUN_LAHIR: "",
@@ -138,15 +126,17 @@ export default {
   },
 
   methods: {
-    getData(ID_WALI) {
+    getData() {
       axios
-        .get(`http://localhost:8080/api/v1/data_wali?ID_WALI=${ID_WALI}`)
+        .get(
+          `http://localhost:8080/api/v1/data_wali?ID_WALI=${this.$route.params.id}`
+        )
         .then((response) => (this.result = response.data.result[0]));
     },
-    editData(ID_WALI) {
+    editData() {
       axios
         .put(
-          `http://localhost:8080/api/v1/data_wali?ID_WALI=${ID_WALI}`,
+          `http://localhost:8080/api/v1/data_wali?ID_WALI=${this.$route.params.id}`,
           this.model
         )
         .then(() => {

@@ -5,66 +5,59 @@
       <div class="row">
         <div class="col-xl-3 col-lg-6">
           <stats-card
-            title="Total Father "
+            title="Total  "
             type="gradient-red"
-            sub-title=""
+            sub-title="Father"
             icon="ni ni-active-40"
             class="mb-4 mb-xl-0"
           >
             <template slot="footer">
-              <span class="text-success mr-2"> {{ result.length }} </span>
-              <span class="text-nowrap">Father's student today</span>
+              <span class="text-success mr-2">{{ result.length }}</span>
+              <span class="text-nowrap">Since Today</span>
             </template>
           </stats-card>
         </div>
         <div class="col-xl-3 col-lg-6">
           <stats-card
-            title="Total traffic"
+            title="Total"
             type="gradient-orange"
-            sub-title="2,356"
+            sub-title="Mother"
             icon="ni ni-chart-pie-35"
             class="mb-4 mb-xl-0"
           >
             <template slot="footer">
-              <span class="text-success mr-2"
-                ><i class="fa fa-arrow-up"></i>
-                <i>
-                  {{ result.length }}
-                </i></span
-              >
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">
+                <i>{{ ibu.length }}</i>
+              </span>
+              <span class="text-nowrap">Since Today</span>
             </template>
           </stats-card>
         </div>
         <div class="col-xl-3 col-lg-6">
           <stats-card
-            title="Sales"
+            title="Total"
             type="gradient-green"
-            sub-title="924"
-            icon="ni ni-money-coins"
+            sub-title="Wali"
+            icon="ni ni-circle-08"
             class="mb-4 mb-xl-0"
           >
             <template slot="footer">
-              <span class="text-danger mr-2"
-                ><i class="fa fa-arrow-down"></i> 5.72%</span
-              >
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-danger mr-2">{{wali.length}}</span>
+              <span class="text-nowrap">Since Today</span>
             </template>
           </stats-card>
         </div>
         <div class="col-xl-3 col-lg-6">
           <stats-card
-            title="Performance"
+            title="Total"
             type="gradient-info"
-            sub-title="49,65%"
+            sub-title="Student"
             icon="ni ni-chart-bar-32"
             class="mb-4 mb-xl-0"
           >
             <template slot="footer">
-              <span class="text-success mr-2"
-                ><i class="fa fa-arrow-up"></i> 54.8%</span
-              >
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">{{siswa.length}}</span>
+              <span class="text-nowrap">Since Today</span>
             </template>
           </stats-card>
         </div>
@@ -76,9 +69,9 @@
         <div class="col">
           <data-ayah title="Light Table"></data-ayah>
           <br />
-          <data-ibu title="Light Table"> </data-ibu>
+          <data-ibu title="Light Table"></data-ibu>
           <br />
-          <data-wali title="Light Table"> </data-wali>
+          <data-wali title="Light Table"></data-wali>
         </div>
       </div>
     </div>
@@ -90,22 +83,52 @@ import DataIbu from "./Tables/DataIbu";
 import DataWali from "./Tables/DataWali";
 import axios from "axios";
 export default {
-  name: "icons",
+  name: "data-ortu",
   components: {
     DataAyah,
     DataIbu,
     DataWali,
   },
-  data: function() {
+  data: function () {
     return {
       result: [],
+      ibu: [],
+      wali: [],
+      siswa: [],
     };
   },
-  mounted: function() {
+  created() {
     axios
       .get("http://localhost:8080/api/v1/data_ayah/semua_data_ayah")
       .then((response) => {
         this.result = response.data.result;
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("http://localhost:8080/api/v1/data_ibu/semua_data_ibu")
+      .then((response) => {
+        this.ibu = response.data.result;
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("http://localhost:8080/api/v1/data_wali/semua_data_wali")
+      .then((response) => {
+        this.wali = response.data.result;
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("http://localhost:8080/api/v1/siswa/semua_siswa")
+      .then((response) => {
+        this.siswa = response.data.result;
         console.log(response);
       })
       .catch((err) => {

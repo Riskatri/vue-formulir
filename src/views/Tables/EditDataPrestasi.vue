@@ -14,53 +14,46 @@
               placeholder="ID PRESTASI SISWA"
               addon-left-icon="ni ni-hat-3"
               v-model="model.ID_PRESTASI_SISWA"
-            >
-            </base-input>
+            ></base-input>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> JENIS PRESTASI </label>
+                <label>JENIS PRESTASI</label>
                 <select v-model="model.PRESTASI_ID">
-                  <option selected disabled> pilih jenis prestasi </option>
+                  <option selected disabled>pilih jenis prestasi</option>
                   <option
                     v-for="pres in prestasi"
                     :key="pres.PRESTASI_ID"
                     :value="pres.PRESTASI_ID"
-                  >
-                    {{ pres.JENIS }}
-                  </option></select
-                >
+                  >{{ pres.JENIS }}</option>
+                </select>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> SISWA </label>
+                <label>SISWA</label>
                 <select v-model="model.ID_SISWA">
-                  <option selected disabled> pilih siswa </option>
+                  <option selected disabled>pilih siswa</option>
                   <option
                     v-for="sis in siswa"
                     :key="sis.ID_SISWA"
                     :value="sis.ID_SISWA"
-                  >
-                    {{ sis.NAMA_LENGKAP }}
-                  </option></select
-                >
+                  >{{ sis.NAMA_LENGKAP }}</option>
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <label> TINGKAT PRESTASI </label>
+                <label>TINGKAT PRESTASI</label>
                 <select v-model="model.ID_TINGKAT">
-                  <option selected disabled> pilih tingkat prestasi </option>
+                  <option selected disabled>pilih tingkat prestasi</option>
                   <option
                     v-for="rank in tingkat"
                     :key="rank.ID_TINGKAT"
                     :value="rank.ID_TINGKAT"
-                  >
-                    {{ rank.TINGKAT_PRESTASI }}
-                  </option></select
-                >
+                  >{{ rank.TINGKAT_PRESTASI }}</option>
+                </select>
               </div>
             </div>
 
@@ -70,24 +63,21 @@
               placeholder="NAMA PRESTASI"
               addon-left-icon="ni ni-hat-3"
               v-model="model.NAMA_PRESTASI"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="TAHUN"
               addon-left-icon="ni ni-calendar-08"
               v-model="model.TAHUN"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="PENYELENGGARA"
               addon-left-icon="ni ni-bus-front-12"
               v-model="model.PENYELENGGARA"
-            >
-            </base-input>
+            ></base-input>
 
             <button type="submit" class="btn btn-primary">EDIT</button>
           </form>
@@ -135,17 +125,17 @@ export default {
   },
 
   methods: {
-    getData(ID_PRESTASI_SISWA) {
+    getData() {
       axios
         .get(
-          `http://localhost:8080/api/v1/prestasi_siswa?ID_PRESTASI_SISWA=${ID_PRESTASI_SISWA}`
+          `http://localhost:8080/api/v1/prestasi_siswa?ID_PRESTASI_SISWA=${this.$route.params.id}`
         )
         .then((response) => (this.result = response.data.result[0]));
     },
-    editData(ID_PRESTASI_SISWA) {
+    editData() {
       axios
         .put(
-          `http://localhost:8080/api/v1/prestasi_siswa?ID_PRESTASI_SISWA=${ID_PRESTASI_SISWA}`,
+          `http://localhost:8080/api/v1/prestasi_siswa?ID_PRESTASI_SISWA=${this.$route.params.id}`,
           this.model
         )
         .then(() => {

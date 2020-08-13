@@ -14,82 +14,76 @@
               placeholder="ID SISWA"
               addon-left-icon="ni ni-circle-08"
               v-model="model.ID_SISWA"
-            >
-            </base-input>
+            ></base-input>
 
             <div class="row">
               <div class="col-lg-6">
-                <label> AGAMA </label>
+                <label>AGAMA</label>
+                <br />
                 <select v-model="model.ID_AGAMA">
-                  <option selected disabled> pilih agama </option>
+                  <option selected disabled>pilih agama</option>
                   <option
                     v-for="religi in agama"
                     :key="religi.ID_AGAMA"
                     :value="religi.ID_AGAMA"
-                  >
-                    {{ religi.JENIS_AGAMA }}
-                  </option></select
-                >
+                  >{{ religi.JENIS_AGAMA }}</option>
+                </select>
               </div>
             </div>
+
+            <label>LAYAK:</label>
+            <input type="checkbox" v-model="layak" />
             <div class="row">
               <div class="col-lg-6">
-                <label> LAYAK PIP </label>
+                <label>ALASAN LAYAK PIP</label>
                 <select v-model="model.ID_PIP">
-                  <option selected disabled> pilih alasan </option>
+                  <option selected disabled>pilih alasan</option>
                   <option
                     v-for="alasan in pip"
                     :key="alasan.ID_PIP"
                     :value="alasan.ID_PIP"
-                  >
-                    {{ alasan.ALASAN }}
-                  </option></select
-                >
+                    :disabled="!layak"
+                  >{{ alasan.ALASAN }}</option>
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <label> TRANSPORTASI </label>
+                <label>TRANSPORTASI</label>
                 <select v-model="model.ID_TRANSPORTASI">
-                  <option selected disabled> pilih transportasi </option>
+                  <option selected disabled>pilih transportasi</option>
                   <option
                     v-for="transportasi in transport"
                     :key="transportasi.ID_TRANSPORTASI"
                     :value="transportasi.ID_TRANSPORTASI"
-                  >
-                    {{ transportasi.JENIS }}
-                  </option></select
-                >
+                  >{{ transportasi.JENIS }}</option>
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <label> TEMPAT TINGGAL </label>
+                <label>TEMPAT TINGGAL</label>
                 <select v-model="model.ID_TINGGAL">
-                  <option selected disabled> pilih tempat tinggal </option>
+                  <option selected disabled>pilih tempat tinggal</option>
                   <option
                     v-for="tempat in tinggal"
                     :key="tempat.ID_TINGGAL"
                     :value="tempat.ID_TINGGAL"
-                  >
-                    {{ tempat.TEMPAT_TINGGAL }}
-                  </option></select
-                >
+                  >{{ tempat.TEMPAT_TINGGAL }}</option>
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <label> BERKEBUTUHAN KHUSUS </label>
+                <label>BERKEBUTUHAN KHUSUS</label>
                 <select v-model="model.ID_KH">
-                  <option selected disabled> pilih Kebutuhan khusus </option>
+                  <option selected disabled>pilih Kebutuhan khusus</option>
                   <option
                     v-for="kh in kebutuhan"
                     :key="kh.ID_KH"
                     :value="kh.ID_KH"
-                  >
-                    {{ kh.JENIS_KH }}
-                  </option></select
-                >
+                  >{{ kh.JENIS_KH }}</option>
+                </select>
               </div>
             </div>
             <br />
@@ -98,18 +92,12 @@
               placeholder="NAMA LENGKAP"
               addon-left-icon="ni ni-circle-08"
               v-model="model.NAMA_LENGKAP"
-            >
-            </base-input>
+            ></base-input>
 
-            <label> JENIS KELAMIN </label>
+            <label>JENIS KELAMIN</label>
             <!-- <p>JENIS KELAMIN</p> -->
-            <input
-              type="radio"
-              v-model="model.JENIS_KELAMIN"
-              value="laki-laki"
-            />
+            <input type="radio" v-model="model.JENIS_KELAMIN" value="laki-laki" />
             laki-laki
-
             <input
               type="radio"
               v-model="model.JENIS_KELAMIN"
@@ -121,139 +109,134 @@
               placeholder="TEMPAT LAHIR"
               addon-left-icon="ni ni-square-pin"
               v-model="model.TEMPAT_LAHIR"
-            >
-            </base-input>
+            ></base-input>
 
-            <base-input
-              class="input-group-alternative mb-3"
-              placeholder="TANGGAL LAHIR"
-              addon-left-icon="ni ni-calendar-grid-58"
-              v-model="model.TANGGAL_LAHIR"
-            >
-            </base-input>
-
+            <div class="row">
+              <div class="col-lg-6">
+                TANGGAL LAHIR
+                <input
+                  class="input-group-mb-3"
+                  v-model="model.TANGGAL_LAHIR"
+                  type="date"
+                />
+              </div>
+            </div>
+            <label>KEWARGANEGARAAN</label>
+            <br />
+            <input type="radio" value="indonesia" />
+            Indonesia (WNI)
+            <input type="radio" value="asing" />
+            Asing (WNA)
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NAMA NEGARA"
               addon-left-icon="ni ni ni-folder-17"
               v-model="model.NAMA_NEGARA"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="ALAMAT JALAN"
               addon-left-icon="ni ni-square-pin"
               v-model="model.ALAMAT_JALAN"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="RT"
               addon-left-icon="ni ni-square-pin"
               v-model="model.RT"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="RW"
               addon-left-icon="ni ni-square-pin"
               v-model="model.RW"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NAMA DUSUN"
               addon-left-icon="ni ni-square-pin"
               v-model="model.NAMA_DUSUN"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NAMA KELURAHAN/DESA"
               addon-left-icon="ni ni-square-pin"
               v-model="model.NAMA_KELURAHAN_DESA"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="KECAMATAN"
               addon-left-icon="ni ni-square-pin"
               v-model="model.KECAMATAN"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="KODE POS"
               addon-left-icon="ni ni-square-pin"
               v-model="model.KODE_POS"
-            >
-            </base-input>
-            <base-input
+            ></base-input>
+
+            <label>PENERIMA KPS :</label>
+            <input type="checkbox" v-model="checked" value="YA" />
+
+            <input
               class="input-group-alternative mb-3"
               placeholder="NOMOR KPS"
-              addon-left-icon="ni ni-folder-17"
               v-model="model.NO_KPS"
-            >
-            </base-input>
+              :disabled="!checked"
+            />
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NOMOR KIP"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NOMOR_KIP_"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NAMA TERTERA DI KIP"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NAMA_TERTERA_KIP"
-            >
-            </base-input>
+            ></base-input>
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NOMOR KKS"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NOMOR_KKS"
-            >
-            </base-input>
+            ></base-input>
             <base-input
               class="input-group-alternative mb-3"
               placeholder="bANK"
               addon-left-icon="ni ni-folder-17"
               v-model="model.BANK"
-            >
-            </base-input>
+            ></base-input>
 
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NOMOR AKTA LAHIR"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NOMOR_AKTA_LAHIR"
-            >
-            </base-input>
+            ></base-input>
             <base-input
               class="input-group-alternative mb-3"
               placeholder="NOMOR REKENING"
               addon-left-icon="ni ni-folder-17"
               v-model="model.NO_REKENING_BANK"
-            >
-            </base-input>
+            ></base-input>
             <base-input
               class="input-group-alternative mb-3"
               placeholder="ATAS NAMA"
               addon-left-icon="ni ni-folder-17"
               v-model="model.ATAS_NAMA"
-            >
-            </base-input>
+            ></base-input>
 
             <button type="submit">add</button>
           </form>
@@ -301,6 +284,8 @@ export default {
       transport: [],
       tinggal: [],
       kebutuhan: [],
+      checked: false,
+      layak: false,
     };
   },
 
@@ -329,9 +314,10 @@ export default {
   },
   methods: {
     add() {
-      axios
-        .post("http://localhost:8080/api/v1/siswa/", this.model)
-        .then(() => alert("success add data"));
+      axios.post("http://localhost:8080/api/v1/siswa/", this.model).then(() => {
+        alert("success add data");
+        this.$router.go();
+      });
     },
   },
 };
