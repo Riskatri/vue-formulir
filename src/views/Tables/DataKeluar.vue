@@ -35,12 +35,9 @@
             <tr scope="row" v-for="keluar in result" :key="keluar.DAFTAR_KELUAR_ID">
               <td>{{ keluar.DAFTAR_KELUAR_ID }}</td>
               <td>{{ keluar.ID_SISWA }}</td>
-
               <td>{{ keluar.ID_ALASAN }}</td>
-              <td>{{ keluar.TANGGAL_KELUAR }}</td>
-
+              <td>{{ keluar.TANGGAL_KELUAR | formatDate }}</td>
               <td>{{ keluar.ALASAN }}</td>
-
               <td>
                 <router-link
                   :to="`/edit_keluar/${keluar.DAFTAR_KELUAR_ID}`"
@@ -63,6 +60,8 @@
 <script>
 import axios from "axios";
 import { mdbTbl, mdbTblHead, mdbTblBody } from "mdbvue";
+import moment from "moment";
+import Vue from "vue";
 
 export default {
   data: function () {
@@ -99,4 +98,9 @@ export default {
     },
   },
 };
+Vue.filter("formatDate", function (value) {
+  if (value) {
+    return moment(String(value)).format("MM/DD/YYYY");
+  }
+});
 </script>
